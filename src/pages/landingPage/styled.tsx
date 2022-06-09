@@ -24,6 +24,7 @@ export const HeaderTitle = styled.h1`
     &{
         position: relative;
         left: 10%;
+        width: fit-content;
         color: #686868;
         user-select: none;
         font-weight: 600;
