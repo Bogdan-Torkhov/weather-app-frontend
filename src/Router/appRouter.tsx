@@ -1,10 +1,10 @@
 import {Routes, Route} from 'react-router-dom'
-import { App } from 'pages/App'
+import { LandingPage } from 'pages/landingPage'
 
 export const Router = () => {
     return(
         <Routes>
-            <Route path='/' element={<App />} />
+            <Route path='/' element={<LandingPage/>} />
         </Routes>
     )
 }
