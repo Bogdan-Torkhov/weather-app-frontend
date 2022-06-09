@@ -11,10 +11,8 @@ export const PageBasicLayout = styled.div`
 
 export const Header = styled.header`
     &{
-        display: flex;
+        position: relative;
         box-sizing: border-box;
-        justify-content: center;
-        align-items: center;
         width: 100%;
         padding: 1rem;
         background-color: #e9e9e9;
@@ -24,11 +22,13 @@ export const Header = styled.header`
 
 export const HeaderTitle = styled.h1`
     &{
+        position: relative;
+        left: 10%;
         color: #686868;
         user-select: none;
         font-weight: 600;
         text-transform: uppercase;
-        font-size: 48px;
+        font-size: 36px;
     }
 `
 
@@ -41,5 +41,37 @@ export const PageContentBlock = styled.section`
         justify-content: center;
         border: 1px solid #cecece;
         padding: 1rem 2rem;
+    }
+`
+
+export const WeatherPreview = styled.div`
+    &{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+`
+
+export const WeatherPreviewCityName = styled.h2`
+    &{
+        font-size: 36px;
+    }
+`
+
+export const WeatherPreviewContainer = styled.div`
+        &{
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+        }
+`
+
+
+
+export const WeatherPreviewItem = styled.div`
+    &{
+        display: flex;
+        padding: 1rem;
     }
 `
