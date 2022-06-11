@@ -1,8 +1,8 @@
 import styled from "styled-components";
+import { fluidTypography } from "components/fluidTypography";
 
 export const HeaderContainer = styled.header`
     &{
-        position: relative;
         box-sizing: border-box;
         width: 100%;
         padding: 1rem;
@@ -13,13 +13,11 @@ export const HeaderContainer = styled.header`
 
 export const HeaderTitle = styled.h1`
     &{
-        position: relative;
-        left: 10%;
         width: fit-content;
         color: #686868;
         user-select: none;
         font-weight: 600;
         text-transform: uppercase;
-        font-size: 36px;
+        font-size: ${fluidTypography(1920, 320, 48, 16)};
     }
 `

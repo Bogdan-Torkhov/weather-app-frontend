@@ -5,7 +5,7 @@ import { WeatherValues } from 'types/ISingleValue'
 
 export const WeatherContent = () => {
     const [weatherValues, setWeatherValues] = useState<Array<WeatherValues>>([])
-
+    const [cityName, setCityName] = useState<string>('Moscow')
     useLayoutEffect(()=>{
         updateWeatherValues()
     },[])
@@ -46,6 +46,7 @@ export const WeatherContent = () => {
                 </h1>
 
                 <WeatherPreviewCityName>
+                    {cityName}
                 </WeatherPreviewCityName>
 
                 <WeatherPreviewContainer>

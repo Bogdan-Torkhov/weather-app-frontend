@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { fluidTypography } from "components/fluidTypography"
 
 export const PageContentBlock = styled.section`
     &{
@@ -23,7 +24,8 @@ export const WeatherPreview = styled.div`
 
 export const WeatherPreviewCityName = styled.h2`
     &{
-        font-size: 36px;
+        user-select: none;
+        font-size: ${fluidTypography(320, 1920, 18, 36)}
     }
 `
 
@@ -31,7 +33,11 @@ export const WeatherPreviewContainer = styled.div`
         &{
             display: flex;
             width: 100%;
-            justify-content: space-around;
+            overflow-x: scroll;
+            border: 1px solid #989898;
+            border-radius: 8px ;
+            padding: 1rem;
+            gap: 1rem;
         }
 `
 
