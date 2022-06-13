@@ -9,12 +9,12 @@ export const WeatherContent = () => {
     const [weatherValues, setWeatherValues] = useState<Array<WeatherValues>>([])
     const [cityName, setCityName] = useState<string>('Moscow')
     useLayoutEffect(()=>{
+        console.log('Config from .env is: ', appConfig.backendUrl)
         updateWeatherValues()
     },[])
 
     async function updateWeatherValues() {
 
-        console.log(appConfig.backendUrl)
 
         const valuesFromBackend = await axios({
             method: 'GET',
