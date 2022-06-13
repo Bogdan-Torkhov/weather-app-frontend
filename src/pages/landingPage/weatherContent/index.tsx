@@ -14,6 +14,8 @@ export const WeatherContent = () => {
 
     async function updateWeatherValues() {
 
+        console.log(appConfig.backendUrl)
+
         const valuesFromBackend = await axios({
             method: 'GET',
             url: `${appConfig.backendUrl}/api`
