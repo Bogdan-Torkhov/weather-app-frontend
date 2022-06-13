@@ -32,6 +32,7 @@ export const WeatherPreviewCityName = styled.h2`
 export const WeatherPreviewContainer = styled.div`
         &{
             display: flex;
+            box-sizing: border-box;
             width: 100%;
             overflow-x: scroll;
             border: 1px solid #989898;
@@ -39,13 +40,4 @@ export const WeatherPreviewContainer = styled.div`
             padding: 1rem;
             gap: 1rem;
         }
-`
-
-
-
-export const WeatherPreviewItem = styled.div`
-    &{
-        display: flex;
-        padding: 1rem;
-    }
 `

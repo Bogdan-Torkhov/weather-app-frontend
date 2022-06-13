@@ -1,4 +1,6 @@
 import { useLayoutEffect, useState } from 'react'
+import axios from 'axios'
+import { appConfig } from '@config/appConfig'
 import { WeatherPreviewCard } from './singleCard'
 import { PageContentBlock, WeatherPreview, WeatherPreviewCityName, WeatherPreviewContainer } from './styled'
 import { WeatherValues } from 'types/ISingleValue'
@@ -10,9 +12,13 @@ export const WeatherContent = () => {
         updateWeatherValues()
     },[])
 
-    function updateWeatherValues() {
+    async function updateWeatherValues() {
 
-        //make some request
+        const valuesFromBackend = await axios({
+            method: 'GET',
+            url: `${appConfig.backendUrl}/api`
+        })
+        console.log(valuesFromBackend)
 
         const fakeResponseFromBackend: Array<WeatherValues> = [
             {
