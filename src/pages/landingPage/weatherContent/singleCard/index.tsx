@@ -1,8 +1,12 @@
 import {WeatherPreviewItem} from './styled'
 import {FC} from 'react'
-import { WeatherValues } from 'types/ISingleValue'
 
-export const WeatherPreviewCard: FC<WeatherValues> = ({valueName, value}) => {
+interface ICardProps {
+    valueName: string,
+    value: number
+}
+
+export const WeatherPreviewCard: FC<ICardProps> = ({value, valueName}) => {
     return (
         <WeatherPreviewItem>
             <span>{valueName}</span>

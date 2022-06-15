@@ -1,46 +1,37 @@
-import { useLayoutEffect, useState } from 'react'
-import axios from 'axios'
+import { useEffect, useState } from 'react'
+import axios, { AxiosResponse } from 'axios'
 import { appConfig } from '@config/appConfig'
 import { WeatherPreviewCard } from './singleCard'
+import { SearchBlock } from './searchInput'
 import { PageContentBlock, WeatherPreview, WeatherPreviewCityName, WeatherPreviewContainer } from './styled'
-import { WeatherValues } from 'types/ISingleValue'
+import { IWeatherResponse } from 'types/weatherResponse'
+import { IWeatherValues } from 'types/weatherValues'
 
 export const WeatherContent = () => {
-    const [weatherValues, setWeatherValues] = useState<Array<WeatherValues>>([])
-    const [cityName, setCityName] = useState<string>('Moscow')
-    useLayoutEffect(()=>{
-        console.log('Config from .env is: ', appConfig.backendUrl)
-        updateWeatherValues()
-    },[])
+    const [weatherValues, setWeatherValues] = useState<IWeatherValues>()
+    const [cityName, setCityName] = useState<string>('Великий Новгород') 
 
-    async function updateWeatherValues() {
+    useEffect(() => {
+        updateWeatherValues(cityName)
+    }, [cityName])
 
+    async function updateWeatherValues(cityNameToSearch: string) {
 
-        const valuesFromBackend = await axios({
-            method: 'GET',
-            url: `${appConfig.backendUrl}/api`
-        })
-        console.log(valuesFromBackend)
-
-        const fakeResponseFromBackend: Array<WeatherValues> = [
-            {
-                valueName: 'temperature',
-                value: 24,
-            },
-            {
-                valueName: 'presure',
-                value: 149,
-            },
-            {
-                valueName: 'windSpeed',
-                value: 14
+        const valuesFromBackend: AxiosResponse<IWeatherResponse, null> = await axios({
+            method: 'POST',
+            url: `http://api.weatherapi.com/v1/current.json`,
+            params: {
+                key: appConfig.weatherApiKey,
+                q: cityNameToSearch
             }
-        ]
+        })
 
-        if (fakeResponseFromBackend &&
-            fakeResponseFromBackend instanceof Array
-        ) {
-            setWeatherValues(fakeResponseFromBackend)
+        console.log(valuesFromBackend.data)
+
+        if (valuesFromBackend.status === 200) {
+            setWeatherValues(valuesFromBackend.data.current)
+        } else if (valuesFromBackend.status > 400) {
+            console.error('Неправильное имя города')
         }
 
     }
@@ -48,6 +39,8 @@ export const WeatherContent = () => {
     return (
         <PageContentBlock>
             <WeatherPreview>
+
+                <SearchBlock setCityName={setCityName} />
 
                 <h1>
                     Current city weather preview
@@ -59,11 +52,7 @@ export const WeatherContent = () => {
 
                 <WeatherPreviewContainer>
 
-                    {weatherValues.map((item, index) => {
-                        return (
-                            <WeatherPreviewCard value={item.value} valueName={item.valueName} />
-                        )
-                    })}
+                    {weatherValues && <WeatherPreviewCard value={weatherValues.temp_c} valueName='Температура' />}
 
                 </WeatherPreviewContainer>
 
