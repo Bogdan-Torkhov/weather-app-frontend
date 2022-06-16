@@ -1,19 +1,21 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { appConfig } from '@config/appConfig'
 import { WeatherPreviewCard } from './singleCard'
 import { SearchBlock } from './searchInput'
 import { PageContentBlock, WeatherPreview, WeatherPreviewCityName, WeatherPreviewContainer } from './styled'
 import { IWeatherResponse } from 'types/weatherResponse'
-import { IWeatherValues } from 'types/weatherValues'
+import { IWeatherValues } from 'types/weatherResponse'
+
 
 export const WeatherContent = () => {
     const [weatherValues, setWeatherValues] = useState<IWeatherValues>()
-    const [cityName, setCityName] = useState<string>('Великий Новгород') 
+    const [cityName, setCityName] = useState<string>('Великий Новгород')
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         updateWeatherValues(cityName)
-    }, [cityName])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     async function updateWeatherValues(cityNameToSearch: string) {
 
@@ -26,10 +28,11 @@ export const WeatherContent = () => {
             }
         })
 
-        console.log(valuesFromBackend.data)
-
         if (valuesFromBackend.status === 200) {
-            setWeatherValues(valuesFromBackend.data.current)
+            const values = valuesFromBackend.data.current
+            setCityName(valuesFromBackend.data.location.name)
+            setWeatherValues(values)
+
         } else if (valuesFromBackend.status > 400) {
             console.error('Неправильное имя города')
         }
@@ -40,7 +43,7 @@ export const WeatherContent = () => {
         <PageContentBlock>
             <WeatherPreview>
 
-                <SearchBlock setCityName={setCityName} />
+                <SearchBlock setCityName={updateWeatherValues} />
 
                 <h1>
                     Current city weather preview
@@ -52,7 +55,7 @@ export const WeatherContent = () => {
 
                 <WeatherPreviewContainer>
 
-                    {weatherValues && <WeatherPreviewCard value={weatherValues.temp_c} valueName='Температура' />}
+                
 
                 </WeatherPreviewContainer>
 
