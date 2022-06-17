@@ -1,11 +1,11 @@
-import { useEffect, useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import axios, { AxiosResponse } from 'axios'
 import { appConfig } from '@config/appConfig'
-import { WeatherPreviewCard } from './singleCard'
 import { SearchBlock } from './searchInput'
-import { PageContentBlock, WeatherPreview, WeatherPreviewCityName, WeatherPreviewContainer } from './styled'
+import { PageContentBlock, WeatherPreviewCityName, WeatherPreviewBlock } from './styled'
 import { IWeatherResponse } from 'types/weatherResponse'
 import { IWeatherValues } from 'types/weatherResponse'
+import { WeatherPreview } from './weatherPreview'
 
 
 export const WeatherContent = () => {
@@ -41,7 +41,7 @@ export const WeatherContent = () => {
 
     return (
         <PageContentBlock>
-            <WeatherPreview>
+            <WeatherPreviewBlock>
 
                 <SearchBlock setCityName={updateWeatherValues} />
 
@@ -53,13 +53,9 @@ export const WeatherContent = () => {
                     {cityName}
                 </WeatherPreviewCityName>
 
-                <WeatherPreviewContainer>
+                { weatherValues && <WeatherPreview values={weatherValues} /> }
 
-                
-
-                </WeatherPreviewContainer>
-
-            </WeatherPreview>
+            </WeatherPreviewBlock>
         </PageContentBlock>
     )
 }

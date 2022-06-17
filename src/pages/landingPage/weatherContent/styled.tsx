@@ -13,7 +13,7 @@ export const PageContentBlock = styled.section`
     }
 `
 
-export const WeatherPreview = styled.div`
+export const WeatherPreviewBlock = styled.div`
     &{
         display: flex;
         flex-direction: column;
