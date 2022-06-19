@@ -6,5 +6,6 @@ export const PageBasicLayout = styled.div`
         height: 100vh;
         width: 100vw;
         flex-direction: column;
+        background-color: #eeeeee;
     }
 `

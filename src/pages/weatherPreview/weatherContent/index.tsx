@@ -43,11 +43,7 @@ export const WeatherContent = () => {
         <PageContentBlock>
             <WeatherPreviewBlock>
 
-                <SearchBlock setCityName={updateWeatherValues} />
-
-                <h1>
-                    Current city weather preview
-                </h1>
+                <SearchBlock cityName={cityName} setCityName={updateWeatherValues} />
 
                 <WeatherPreviewCityName>
                     {cityName}

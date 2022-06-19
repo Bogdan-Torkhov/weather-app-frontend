@@ -1,36 +1,37 @@
 import { IWeatherValues } from 'types/weatherResponse'
-import {FC} from 'react'
+import { PreviewBlock, SingleCard, SingleCardValueName, SingleCardValue } from './styled'
+import { FC } from 'react'
 
-interface IWeatherPreview { 
+interface IWeatherPreview {
     values: IWeatherValues
 }
 
-export const WeatherPreview: FC<IWeatherPreview> = ({values}) => {
-    return(
-        <>
-            <div>
-                Облачность
-                {values.cloud}
-            </div>
+export const WeatherPreview: FC<IWeatherPreview> = ({ values }) => {
+    return (
+        <PreviewBlock>
+            <SingleCard>
+                <SingleCardValueName>Облачность: </SingleCardValueName>
+                <SingleCardValue>{values.cloud} </SingleCardValue>
+            </SingleCard>
 
-            <div>
-                Температура
-                {values.temp_c}
-            </div>
+            <SingleCard>
+                <SingleCardValueName>Температура: </SingleCardValueName>
+                <SingleCardValue>{values.temp_c} </SingleCardValue>
+            </SingleCard>
 
-            <div>
-                Ощущается как
-                {values.feelslike_c}
-            </div>
+            <SingleCard>
+                <SingleCardValueName>Ощущается как: </SingleCardValueName>
+                <SingleCardValue>{values.feelslike_c}</SingleCardValue>
+            </SingleCard>
 
-            <div>
-                Влажность
-                {values.humidity}%
-            </div>
+            <SingleCard>
+                <SingleCardValueName>Влажность: </SingleCardValueName>
+                <SingleCardValue>{values.humidity}% </SingleCardValue>  
+            </SingleCard>
 
-            <div>
-                {values.is_day ? 'День' : 'Ночь'}
-            </div>
-        </>
+            <SingleCard>
+                <SingleCardValueName>{values.is_day ? 'День' : 'Ночь'} </SingleCardValueName>
+            </SingleCard>
+        </PreviewBlock>
     )
 }
