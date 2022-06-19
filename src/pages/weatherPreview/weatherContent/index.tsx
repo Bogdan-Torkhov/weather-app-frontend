@@ -20,10 +20,9 @@ export const WeatherContent = () => {
     async function updateWeatherValues(cityNameToSearch: string) {
 
         const valuesFromBackend: AxiosResponse<IWeatherResponse, null> = await axios({
-            method: 'POST',
-            url: `http://api.weatherapi.com/v1/current.json`,
+            method: 'GET',
+            url: `${appConfig.backendUrl}/api/get_weather`,
             params: {
-                key: appConfig.weatherApiKey,
                 q: cityNameToSearch
             }
         })
