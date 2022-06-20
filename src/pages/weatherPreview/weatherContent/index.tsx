@@ -33,7 +33,7 @@ export const WeatherContent = () => {
             setWeatherValues(values)
 
         } else if (valuesFromBackend.status > 400) {
-            console.error('Неправильное имя города')
+            console.error('Ошибка алярма')
         }
 
     }
