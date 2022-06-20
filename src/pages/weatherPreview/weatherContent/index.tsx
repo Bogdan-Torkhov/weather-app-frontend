@@ -23,7 +23,7 @@ export const WeatherContent = () => {
             method: 'GET',
             url: `${appConfig.backendUrl}/api/get_weather`,
             params: {
-                q: cityNameToSearch
+                city: cityNameToSearch
             }
         })
 
