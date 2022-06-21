@@ -38,6 +38,7 @@ export const WeatherContent = () => {
 
     }
 
+    console.log(123)
     return (
         <PageContentBlock>
             <WeatherPreviewBlock>
